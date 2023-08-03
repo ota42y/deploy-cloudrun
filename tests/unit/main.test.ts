@@ -43,6 +43,7 @@ const fakeInputs: { [key: string]: string } = {
   timeout: '',
   revision_traffic: '',
   tag_traffic: '',
+  command: '',
 };
 
 function getInputMock(name: string): string {
@@ -256,6 +257,15 @@ describe('#run', function () {
     expect(call).to.be;
     const args = call.args[1];
     expect(args).to.include.members(['--service-account', 'test@12345.iam.gserviceaccount.com']);
+  });
+
+  it('sets command if given', async function () {
+    this.stubs.getInput.withArgs('command').returns('ls,pwd');
+    await run();
+    const call = this.stubs.getExecOutput.getCall(0);
+    expect(call).to.be;
+    const args = call.args[1];
+    expect(args).to.include.members(['--command', 'ls,pwd']);
   });
 });
 

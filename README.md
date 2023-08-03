@@ -219,6 +219,8 @@ jobs:
 
 -   `service_account`: (Optional) Sevice Account to assign Cloud Run service. 
 
+-   `command`: (Optional) Overwrite entrypoint for container image.
+
 ### Custom metadata YAML
 
 For advanced use cases, you can define a custom Cloud Run metadata file. This is
