@@ -108,6 +108,7 @@ export async function run(): Promise<void> {
     const skipDefaultLabels = parseBoolean(getInput('skip_default_labels'));
     const flags = getInput('flags');
     const serviceAccount = getInput('service_account');
+    const command = getInput('command');
 
     let responseType = ResponseTypes.DEPLOY; // Default response type for output parsing
     let cmd;
@@ -150,6 +151,7 @@ export async function run(): Promise<void> {
         labels: Object.keys(labels).length > 0,
         timeout: timeout !== '',
         service_account: serviceAccount !== '',
+        command: command !== '',
       };
       for (const key in providedButIgnored) {
         if (providedButIgnored[key]) {
@@ -173,6 +175,7 @@ export async function run(): Promise<void> {
         labels: Object.keys(labels).length > 0,
         timeout: timeout !== '',
         service_account: serviceAccount !== '',
+        command: command !== '',
       };
       for (const key in providedButIgnored) {
         if (providedButIgnored[key]) {
@@ -213,6 +216,7 @@ export async function run(): Promise<void> {
       }
 
       if (serviceAccount) cmd.push('--service-account', serviceAccount)
+      if (command) cmd.push('--command', command)
     }
 
     // Push common flags
