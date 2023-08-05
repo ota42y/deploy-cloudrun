@@ -174,6 +174,11 @@ inputs:
       `no_traffic` and `tagTraffic` option.
     required: false
 
+  command:
+    description: |-
+      overwrite command
+    required: false
+
 
 outputs:
   url:
